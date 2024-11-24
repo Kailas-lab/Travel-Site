@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center text-primary">Explore Our Travel Packages</h2>
+    <p class="text-center text-muted">Choose from a variety of exciting destinations.</p>
+    <div class="row">
+        {% for package in packages %}
+        <div class="col-md-4 my-3">
+            <div class="card shadow-sm">
+                <img src="{{ package.image.url }}" class="card-img-top" alt="{{ package.name }}">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">{{ package.name }}</h5>
+                    <p class="card-text">{{ package.description }}</p>
+                    <p><strong>Price:</strong> ${{ package.price }}</p>
+                    <p><strong>Duration:</strong> {{ package.duration }} days</p>
+                    <a href="{% url 'package_detail' package.id %}" class="btn btn-outline-primary w-100">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

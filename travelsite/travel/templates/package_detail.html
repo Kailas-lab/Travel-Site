@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <!-- Package Title with Animation -->
+    <h2 class="text-center animate__animated animate__fadeIn animate__delay-1s text-primary">{{ package.name }}</h2>
+    
+    <!-- Full Image Row -->
+    <div class="row my-4">
+        <div class="col-12">
+            <img src="{{ package.image.url }}" 
+                 class="img-fluid rounded shadow-lg animate__animated animate__fadeInUp animate__delay-1s" 
+                 alt="{{ package.name }}">
+        </div>
+    </div>
+
+    <!-- Description Section (Centered) -->
+    <div class="row my-5">
+        <div class="col-12 text-center">
+            <p class="lead">{{ package.description }}</p>
+            <p><strong>Price:</strong> ${{ package.price }}</p>
+            <p><strong>Duration:</strong> {{ package.duration }} days</p>
+        </div>
+    </div>
+
+    <!-- Booking Form Section -->
+    <div class="row my-5">
+        <div class="col-12">
+            <form method="POST" action="{% url 'package_detail' package.id %}">
+                {% csrf_token %}
+                <input type="hidden" name="package" value="{{ package.id }}">
+                
+                <div class="mb-3">
+                    <label for="travel_date" class="form-label">Travel Date</label>
+                    <input type="date" class="form-control" name="travel_date" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="number_of_people" class="form-label">Number of People</label>
+                    <input type="number" class="form-control" name="number_of_people" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="customer_name" class="form-label">Your Name</label>
+                    <input type="text" class="form-control" name="customer_name" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="customer_email" class="form-label">Your Email</label>
+                    <input type="email" class="form-control" name="customer_email" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="mobile_number" class="form-label">Your Mobile Number</label>
+                    <input type="text" class="form-control" name="mobile_number" required>
+                </div>
+                
+                <button type="submit" class="btn btn-success btn-lg w-100">Book Now</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

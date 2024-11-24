@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="alert alert-success shadow-lg p-4 rounded text-center">
+        <h2 class="text-success"><i class="fas fa-check-circle"></i> Thank You for Your Booking!</h2>
+        <p>We have successfully received your booking. Here are your details:</p>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>Package:</strong> {{ booking.package.name }}</p>
+                <p><strong>Travel Date:</strong> {{ booking.travel_date }}</p>
+                <p><strong>Number of People:</strong> {{ booking.number_of_people }}</p>
+            </div>
+            <div class="col-md-6">
+                <p><strong>Your Name:</strong> {{ booking.customer_name }}</p>
+                <p><strong>Your Email:</strong> {{ booking.customer_email }}</p>
+                <p><strong>Your Mobile Number:</strong> {{ booking.mobile_number }}</p>
+            </div>
+        </div>
+
+        <a href="/" class="btn btn-primary mt-3">Go Back to Home</a>
+    </div>
+</div>
+{% endblock %}
